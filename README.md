@@ -43,6 +43,7 @@ Components declared inside of a `MediaProvider` will be listening to screen chan
 
 ```javascript
 {
+  // TODO: Fix this documentation so it matches flexboxgrid2 breakpoints
   xs:   '(max-width: 600px)',
   sm:   '(max-width: 960px) and (min-width: 601px)',
   md:   '(max-width: 1280px) and (min-width: 961px)',
@@ -59,6 +60,7 @@ useful this for server side rendering. Default values are:
 
 ```javascript
 {
+  // TODO: Fix this documentation so it matches flexboxgrid2 breakpoints
   xs:   false,
   gtXs: true,
   sm:   false,
@@ -79,6 +81,7 @@ Subscribes a React component to screen size changes.
 * `mapScreenSizeToProps(screenSize): screenSizeProps` (_Function_): Any time the screen size updates
 `mapScreenSizeToProps` will be called with the active media queries as an object structure, these
 are the possible values
+  * TODO: Fix this documentation so it matches flexboxgrid2 breakpoints
   * `screenSize.xs`
   * `screenSize.sm`
   * `screenSize.md`
