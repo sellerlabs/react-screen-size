@@ -31,6 +31,23 @@ export const breakpoints = {
   xl: { min: XL_MIN, max: Infinity },
 }
 
+const sm = gs(breakpoints.sm.min, breakpoints.sm.max)
+const atMostXs = gs(null, breakpoints.xs.max)
+const atLeastMd = gs(breakpoints.md.min)
+/**
+* @description
+* We export the 'at least' media queries so they can be used to detect changes in
+* screen size between breakpoints.
+* @type {Object}
+*/
+export const atLeastMediaQueries = {
+  // xs has no lower bound, so not useful
+  atLeastSm: gs(breakpoints.sm.min),
+  atLeastMd,
+  atLeastLg: gs(breakpoints.lg.min),
+  atLeastXl: gs(breakpoints.xl.min),
+}
+
 /**
 * @description
 * The default-exported object containing media strings for use with Radium.
@@ -70,29 +87,21 @@ export const breakpoints = {
 *
 * export default Radium(ProductDescription)
 */
-const atMostSm = gs(null, breakpoints.sm.max)
-const atLeastMd = gs(breakpoints.md.min)
-export const atLeastMediaQueries = {
-  // xs has no lower bound, so not useful
-  atLeastSm: gs(breakpoints.sm.min),
-  atLeastMd,
-  atLeastLg: gs(breakpoints.lg.min),
-  atLeastXl: gs(breakpoints.xl.min),
-}
 export const mediaQueries = {
   ...atLeastMediaQueries,
-  atMostXs: gs(null, breakpoints.xs.max),
-  atMostSm,
+  atMostXs,
+  atMostSm: gs(null, breakpoints.sm.max),
   atMostMd: gs(null, breakpoints.md.max),
   atMostLg: gs(null, breakpoints.lg.max),
   // xl has no upper bound, so not useful
   xs: gs(null, breakpoints.xs.max),
-  sm: gs(breakpoints.sm.min, breakpoints.sm.max),
+  sm,
   md: gs(breakpoints.md.min, breakpoints.md.max),
   lg: gs(breakpoints.lg.min, breakpoints.lg.max),
   xl: gs(breakpoints.xl.min),
   // aliases
-  mobile: atMostSm,
+  mobile: atMostXs,
+  tablet: sm,
   desktop: atLeastMd,
 }
 // Turn queries into rules and return in new object
