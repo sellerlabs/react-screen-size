@@ -23,6 +23,7 @@ const Container = ({ mobile, desktop }) => (
 
 const mapScreenSizeToProps = ({ atMostSm, atLeastMd }) => {
   return {
+    // TODO: Bring back tablet, I suppose
     mobile: atMostSm,
     desktop: atLeastMd
   }
