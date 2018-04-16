@@ -17,15 +17,14 @@ If your component logic depends on screen size then you need this.
 ### Quick Example
 
 ```jsx
-const Container = ({ isTablet, isMobile, isDesktop }) => (
+const Container = ({ mobile, desktop }) => (
   ...
 )
 
-const mapScreenSizeToProps = ({ sm, xs, gtXs }) => {
+const mapScreenSizeToProps = ({ atMostSm, atLeastMd }) => {
   return {
-    isTablet: sm,
-    isMobile: xs,
-    isDesktop: gtSm
+    mobile: atMostSm,
+    desktop: atLeastMd
   }
 }
 

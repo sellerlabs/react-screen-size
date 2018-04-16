@@ -1,5 +1,5 @@
 {
-  "name": "react-screen-size",
+  "name": "@sellerlabs/react-screen-size",
   "version": "2.0.1",
   "description": "HoC to connect your component to the current screen size",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "dist"
   ],
   "repository": {
-    "url": "https://github.com/eloytoro/react-screen-size",
+    "url": "https://github.com/sellerlabs/react-screen-size",
     "type": "git"
   },
   "scripts": {

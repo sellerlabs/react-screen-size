@@ -1,0 +1,20 @@
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+max_line_length = 100
+trim_trailing_whitespace = true
+
+[{*.css,*.scss,*.html}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[*.tsv]
+indent_style = tab
+
+[*.json]
+indent_style = space
+indent_size = 2

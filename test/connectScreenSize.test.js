@@ -1,28 +1,34 @@
 import React from 'react';
 import MediaProvider from '../src/MediaProvider';
 import connectScreenSize from '../src/connectScreenSize';
-import medias from '../src/medias';
+import { mediaQueries } from '../src/media-rules';
 import { mount } from 'enzyme';
 import { setupMatchMedia } from './utils';
 
 
-const matchMedia = setupMatchMedia(medias);
+const matchMedia = setupMatchMedia(mediaQueries);
 const defaultScreenSize = {
-  gtLg: false,
-  gtMd: false,
-  gtSm: false,
-  gtXs: false,
-  lg: false,
-  md: false,
+  atLeastSm: false,
+  atLeastMd: false,
+  atLeastLg: false,
+  atLeastXl: false,
+  atMostXs: false,
+  atMostSm: false,
+  atMostMd: false,
+  atMostLg: false,
+  xs: false,
   sm: false,
-  xs: false
+  md: false,
+  lg: false,
+  xl: false,
+  mobile: false,
+  desktop: false
 };
 
 const Stub = jest.fn(() => (<div />));
 const mapScreenSizeToProps = props => ({
-  isMobile: props.xs,
-  isTablet: props.sm,
-  isDesktop: props.gtSm
+  mobile: props.atMostSm,
+  desktop: props.atLeastMd,
 });
 
 const ConnectedStub = connectScreenSize(mapScreenSizeToProps)(Stub);
@@ -38,9 +44,8 @@ describe('connectScreenSize', () => {
 
   const component = wrapped.find(Stub);
   let expectedProps = {
-    isMobile: false,
-    isTablet: false,
-    isDesktop: false,
+    mobile: false,
+    desktop: false,
     foo: 'bar'
   };
 
@@ -50,16 +55,16 @@ describe('connectScreenSize', () => {
 
   it('stays the same when a strict query applies', () => {
     Stub.mockClear();
-    matchMedia(medias.gtLg).enable();
+    matchMedia(mediaQueries.atLeastXl).enable();
     expect(Stub.mock.calls.length).toBe(0);
     expect(component.props()).toEqual(expectedProps);
   });
 
-  it('updates the component when a `greater than` query applies', () => {
-    matchMedia(medias.gtSm).enable();
+  it('updates the component when an `at least` query applies', () => {
+    matchMedia(mediaQueries.atLeastMd).enable();
     expectedProps = {
       ...expectedProps,
-      isDesktop: true
+      desktop: true
     };
     expect(component.props()).toEqual(expectedProps);
   });
