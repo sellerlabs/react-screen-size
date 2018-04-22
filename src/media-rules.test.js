@@ -24,7 +24,8 @@ it('should output correct media rules', () => {
     md: '@media only screen and (min-width: 768px) and (max-width: 991px)',
     lg: '@media only screen and (min-width: 992px) and (max-width: 1199px)',
     xl: '@media only screen and (min-width: 1200px)',
-    mobile: '@media only screen and (max-width: 767px)',
+    mobile: '@media only screen and (max-width: 575px)',
+    tablet: '@media only screen and (min-width: 576px) and (max-width: 767px)',
     desktop: '@media only screen and (min-width: 768px)'
   })
 })
@@ -44,7 +45,8 @@ it('should output correct media queries', () => {
     md: 'only screen and (min-width: 768px) and (max-width: 991px)',
     lg: 'only screen and (min-width: 992px) and (max-width: 1199px)',
     xl: 'only screen and (min-width: 1200px)',
-    mobile: 'only screen and (max-width: 767px)',
+    mobile: 'only screen and (max-width: 575px)',
+    tablet: 'only screen and (min-width: 576px) and (max-width: 767px)',
     desktop: 'only screen and (min-width: 768px)'
   })
 })

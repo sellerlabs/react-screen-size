@@ -26,6 +26,7 @@
     "test": "jest"
   },
   "author": "eloytoro",
+  "contributors": ["arfordweb"],
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
