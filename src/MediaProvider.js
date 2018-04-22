@@ -16,6 +16,7 @@ class MediaProvider extends React.Component {
 
   componentWillMount() {
     this.provider = new Provider(this.props.medias, this.props.screenSize, this.props.matchMedia);
+    this.provider.update();
   }
 
   render() {

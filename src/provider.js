@@ -1,29 +1,29 @@
-import defaultMedias, { greaterThanMedias } from './medias';
+import { atLeastMediaQueries, mediaQueries } from './media-rules';
 
-const gtKeys = Object.keys(greaterThanMedias);
-const defaultScreenSize = {
-  xs:   false,
-  gtXs: true,
-  sm:   false,
-  gtSm: true,
-  md:   true,
-  gtMd: true,
-  lg:   false,
-  gtLg: false
-};
+
+const alKeys = Object.keys(atLeastMediaQueries);
+const defaultScreenSize = Object.keys(mediaQueries).reduce((acc, cur) => {
+  acc[cur] = false
+  return acc
+}, {})
+
+
+
 
 class Provider {
   constructor(medias = {}, screenSize = {}, matchMedia = window.matchMedia) {
     this.listeners = []
-    this.medias = Object.assign({}, defaultMedias, medias);
-    this.screenSize = Object.assign({}, defaultScreenSize, screenSize);
-    this.mediaQueryLists = {};
+    this.medias = { ...mediaQueries, ...medias };
+    this.screenSize = { ...defaultScreenSize, ...screenSize };
+    this.mediaQueryLists = Object.keys(this.medias).reduce((acc, media) => {
+      const curMatchMedia = matchMedia(this.medias[media])
+      acc[media] = curMatchMedia;
+      return acc;
+    }, {});
 
-    Object.keys(this.medias).forEach((key) => {
-      this.mediaQueryLists[key] = matchMedia(this.medias[key]);
-    });
-
-    gtKeys.forEach(key => {
+    // Only add media change listeners on 'atLeast' queries
+    // so we don't trigger more than one at a time
+    alKeys.forEach(key => {
       this.mediaQueryLists[key].addListener(() => this.update());
     });
   }
@@ -33,7 +33,7 @@ class Provider {
   }
 
   update() {
-    this.screenSize = Object.assign({}, this.screenSize);
+    this.screenSize = { ...this.screenSize };
     Object.keys(this.screenSize).forEach((key) => {
       this.screenSize[key] = this.mediaQueryLists[key].matches;
     });
