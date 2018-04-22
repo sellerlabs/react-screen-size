@@ -1,6 +1,6 @@
 {
   "name": "@sellerlabs/react-screen-size",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "HoC to connect your component to the current screen size",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -26,7 +26,9 @@
     "test": "jest"
   },
   "author": "eloytoro",
-  "contributors": ["arfordweb"],
+  "contributors": [
+    "arfordweb"
+  ],
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
